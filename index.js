@@ -185,6 +185,15 @@ function encryptText(string){
 
 	var list_Z32 = []
 
+	// Add padding to the string 
+	// Because this encryption by blocks we encode 16 caracteres by 16
+	var diff = string.length % 16
+	if (diff != 0){
+		for (var i=0;i<(16-diff);i++){
+			string += "0"
+		}
+	}
+
 	// Generate the Z32 object
 	// TODO : case in which the length of the string is odd : because we process the caracters 2 by 2 and if its odd the last caracters processed
 	for (var i = 0 ; i < string.length-3; i+=4) {
@@ -274,6 +283,16 @@ function decryptText(string){
 	var decodedString = ""
 	for (var i = 0;i<decryptedBlocks.length;i++){
 		decodedString += decryptedBlocks[i].getAsciiValue()
+	}
+
+
+	// Remove the padding 
+	for (var i = decodedString.length - 1; i >= 0; i--) {
+		if (decodedString[i] == 0 ){
+			decodedString = decodedString.slice(0,-1)
+		} else {
+			break
+		}
 	}
 
 	return decodedString
@@ -401,29 +420,8 @@ class Z8 {
 }
 
 
-var exempleBits = [1, 1, 1, 1, 1, 0, 1, 1,1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0]
-var Zex = new Z32(exempleBits);
 
-var Zex2 = new Z32(exempleBits)
-var Z8Arrayex = Zex.convertToZ8();
-var Z8ex = Z8Arrayex[0]
-
-//console.log(F(Zex,Zex2,Zex2,Zex2,Zex2))
-
-//var a = Zex.getBits()
-
-//console.log(generateKeyFromData(KEYDATA).length)
-//console.log(Zex)
-var encrypt = encryptBlock(Zex,Zex,Zex,Zex)
-var decrypt = decryptBlock(encrypt[0],encrypt[1],encrypt[2],encrypt[3])
-//console.log(decrypt[0])
-
-
-
-
-var testZ8 = new Z8([1, 1, 1, 1,1, 0, 1, 0])
-//console.log(SBox(testZ8))
-
-var encryptedText = encryptText("ABCDABCDABCDABCD")
+var encryptedText = encryptText("ABCDABCDABCDABCD1")
+console.log(encryptedText)
 var decryptText = decryptText(encryptedText)
 console.log(decryptText)
