@@ -1,9 +1,12 @@
 Usage :
 - Add the file to the project
 - Import the module :
-```import {encryptText,decryptText} from "./sm4.js"
+
+```
+import {encryptText,decryptText} from "./sm4.js"
 var encryptedText = encryptText("This is the text to be encrypted")
-var decryptedText = decryptText(encryptedText)```
+var decryptedText = decryptText(encryptedText)
+```
 
 
 Info on the implementation : https://eprint.iacr.org/2008/329.pdf
