@@ -1,0 +1,20 @@
+{
+  "name": "sm4",
+  "version": "1.0.0",
+  "description": "https://eprint.iacr.org/2008/329.pdf",
+  "main": "sm4.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OnlyAtN1ght/sm4.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OnlyAtN1ght/sm4/issues"
+  },
+  "type":"module",
+  "homepage": "https://github.com/OnlyAtN1ght/sm4#readme"
+}
